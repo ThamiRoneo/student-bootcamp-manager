@@ -158,3 +158,18 @@ const statusChecker = function(status) {
 };
 
 const operationFunctions = [gradeFormatter, statusChecker];
+
+// Task 4 — Higher-Order Functions
+function processStudentData(student, processorFn) {
+  return processorFn(student);
+}
+
+function calculateBonusPoints(marks) {
+  let bonus = 0;
+  for (let i = 0; i < marks.length; i++) {
+    if (marks[i] >= 90) {
+      bonus += 5;
+    }
+  }
+  return bonus;
+}
