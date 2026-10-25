@@ -212,3 +212,7 @@ function showMarksSummary(subject1, subject2, subject3) {
   console.log(`Subject 1: ${subject1}, Subject 2: ${subject2}, Subject 3: ${subject3}`);
   console.log(`Total marks count: ${this.marks.length}`);
 }
+
+// Task 9 — bind()
+const boundDisplay = displayStudentInfo.bind(students[0]);
+const boundSummary = showMarksSummary.bind(students[1]);
