@@ -216,3 +216,14 @@ function showMarksSummary(subject1, subject2, subject3) {
 // Task 9 — bind()
 const boundDisplay = displayStudentInfo.bind(students[0]);
 const boundSummary = showMarksSummary.bind(students[1]);
+
+// Task 10 — Generator for unique student IDs
+function* studentIdGenerator() {
+  let id = 2000;
+  while (true) {
+    id++;
+    yield `GEN-${id}`;
+  }
+}
+
+const idGen = studentIdGenerator();
