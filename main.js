@@ -187,3 +187,13 @@ function processStudent(student, callback) {
     }
   }, 100);
 }
+
+// Task 6 — this
+const studentProcessor = {
+  processorName: "Main Processor",
+  process: function(student) {
+    console.log(`\n[${this.processorName}] Processing student: ${student.name}`);
+    console.log(`Course: ${student.course}, Status: ${student.status}`);
+    return this.processorName;
+  }
+};
