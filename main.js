@@ -128,3 +128,22 @@ const createProcessingCounter = (function() {
 })();
 
 const getProcessedCount = createProcessingCounter;
+
+// Task 2 — IIFE: Configuration system
+const bootcampConfig = (function() {
+  const bootcampName = "SNPL JavaScript Bootcamp";
+  const appVersion = "1.0.0";
+  const passingMark = 50;
+  
+  return {
+    getBootcampName: function() {
+      return bootcampName;
+    },
+    getAppVersion: function() {
+      return appVersion;
+    },
+    getPassingMark: function() {
+      return passingMark;
+    }
+  };
+})();
