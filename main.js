@@ -173,3 +173,17 @@ function calculateBonusPoints(marks) {
   }
   return bonus;
 }
+
+// Task 5 — Callbacks
+function processStudent(student, callback) {
+  console.log(`\nProcessing ${student.name}...`);
+  const count = getProcessedCount();
+  console.log(`Students processed so far: ${count}`);
+  
+  setTimeout(function() {
+    console.log(`Completed processing for ${student.name}`);
+    if (typeof callback === 'function') {
+      callback(student);
+    }
+  }, 100);
+}
