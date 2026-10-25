@@ -227,3 +227,59 @@ function* studentIdGenerator() {
 }
 
 const idGen = studentIdGenerator();
+
+
+// ==================== PHASE 2 DEMONSTRATION ====================
+
+console.log("\n\n=== PHASE 2 - ADVANCED JAVASCRIPT DEMONSTRATIONS ===\n");
+
+console.log("1. CLOSURE - Processing Counter:");
+console.log(`   First call: ${getProcessedCount()}`);
+console.log(`   Second call: ${getProcessedCount()}`);
+console.log(`   Third call: ${getProcessedCount()}`);
+
+console.log("\n2. IIFE - Configuration System:");
+console.log(`   Bootcamp: ${bootcampConfig.getBootcampName()}`);
+console.log(`   Version: ${bootcampConfig.getAppVersion()}`);
+console.log(`   Passing Mark: ${bootcampConfig.getPassingMark()}`);
+
+console.log("\n3. FUNCTIONS AS VALUES:");
+console.log(`   ${gradeFormatter(85)}`);
+console.log(`   ${statusChecker("PASS")}`);
+console.log(`   Operations stored: ${operationFunctions.length} functions`);
+
+console.log("\n4. HIGHER-ORDER FUNCTION:");
+const bonus = calculateBonusPoints(students[0].marks);
+console.log(`   Bonus points for ${students[0].name}: ${bonus}`);
+const result = processStudentData(students[0], function(s) {
+  return `Processed via HOF: ${s.name} has average ${s.average.toFixed(2)}`;
+});
+console.log(`   ${result}`);
+
+console.log("\n5. CALLBACKS - Asynchronous Processing:");
+processStudent(students[0], function(student) {
+  console.log(`   Callback executed for ${student.name} - Status: ${student.status}`);
+});
+
+processStudent(students[1], function(student) {
+  console.log(`   Callback executed for ${student.name} - Status: ${student.status}`);
+});
+
+console.log("\n6. THIS KEYWORD:");
+studentProcessor.process(students[2]);
+
+console.log("\n7. CALL() - Controlling 'this':");
+displayStudentInfo.call(students[0], "JavaScript Advanced", "2024");
+
+console.log("\n8. APPLY() - Different from call():");
+const marksArray = [95, 88, 92];
+showMarksSummary.apply(students[2], marksArray);
+
+console.log("\n9. BIND() - Create bound function:");
+boundDisplay("Full Stack", "2025");
+boundSummary.apply(students[1], [45, 50, 48]);
+
+console.log("\n10. GENERATOR - Unique Student IDs:");
+console.log(`   First ID: ${idGen.next().value}`);
+console.log(`   Second ID: ${idGen.next().value}`);
+console.log(`   Third ID: ${idGen.next().value}`);
