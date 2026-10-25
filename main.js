@@ -181,7 +181,7 @@ function processStudent(student, callback) {
   console.log(`Students processed so far: ${count}`);
   
   setTimeout(function() {
-    console.log(`Completed processing for ${student.name}`);
+    console.log(`\nCompleted processing for ${student.name}`);
     if (typeof callback === 'function') {
       callback(student);
     }
@@ -192,8 +192,8 @@ function processStudent(student, callback) {
 const studentProcessor = {
   processorName: "Main Processor",
   process: function(student) {
-    console.log(`\n[${this.processorName}] Processing student: ${student.name}`);
-    console.log(`Course: ${student.course}, Status: ${student.status}`);
+    console.log(`\n[${this.processorName}] \nProcessing student: ${student.name}`);
+    console.log(`Course: ${student.course} \nStatus: ${student.status}`);
     return this.processorName;
   }
 };
@@ -209,7 +209,7 @@ function displayStudentInfo(course, year) {
 // Task 8 — apply()
 function showMarksSummary(subject1, subject2, subject3) {
   console.log(`\nMarks Summary for ${this.name}:`);
-  console.log(`Subject 1: ${subject1}, Subject 2: ${subject2}, Subject 3: ${subject3}`);
+  console.log(`Subject 1: ${subject1}% \nSubject 2: ${subject2}% \nSubject 3: ${subject3}%`);
   console.log(`Total marks count: ${this.marks.length}`);
 }
 
@@ -241,7 +241,7 @@ console.log(`   Third call: ${getProcessedCount()}`);
 console.log("\n2. IIFE - Configuration System:");
 console.log(`   Bootcamp: ${bootcampConfig.getBootcampName()}`);
 console.log(`   Version: ${bootcampConfig.getAppVersion()}`);
-console.log(`   Passing Mark: ${bootcampConfig.getPassingMark()}`);
+console.log(`   Passing Mark: ${bootcampConfig.getPassingMark()}%`);
 
 console.log("\n3. FUNCTIONS AS VALUES:");
 console.log(`   ${gradeFormatter(85)}`);
@@ -250,19 +250,19 @@ console.log(`   Operations stored: ${operationFunctions.length} functions`);
 
 console.log("\n4. HIGHER-ORDER FUNCTION:");
 const bonus = calculateBonusPoints(students[0].marks);
-console.log(`   Bonus points for ${students[0].name}: ${bonus}`);
+console.log(`   Bonus points for ${students[0].name}: ${bonus}+`);
 const result = processStudentData(students[0], function(s) {
-  return `Processed via HOF: ${s.name} has average ${s.average.toFixed(2)}`;
+  return `Processed via HOF: ${s.name} has average ${s.average.toFixed(2)}%`;
 });
 console.log(`   ${result}`);
 
 console.log("\n5. CALLBACKS - Asynchronous Processing:");
 processStudent(students[0], function(student) {
-  console.log(`   Callback executed for ${student.name} - Status: ${student.status}`);
+  console.log(`Callback executed for ${student.name} - Status: ${student.status}`);
 });
 
 processStudent(students[1], function(student) {
-  console.log(`   Callback executed for ${student.name} - Status: ${student.status}`);
+  console.log(`Callback executed for ${student.name} - Status: ${student.status}`);
 });
 
 console.log("\n6. THIS KEYWORD:");
