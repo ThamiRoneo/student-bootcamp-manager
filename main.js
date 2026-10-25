@@ -197,3 +197,11 @@ const studentProcessor = {
     return this.processorName;
   }
 };
+
+// Task 7 — call()
+function displayStudentInfo(course, year) {
+  console.log(`\nStudent: ${this.name}`);
+  console.log(`Course: ${course}`);
+  console.log(`Year: ${year}`);
+  console.log(`ID: ${this.id}`);
+}
