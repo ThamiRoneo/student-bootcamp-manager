@@ -147,3 +147,14 @@ const bootcampConfig = (function() {
     }
   };
 })();
+
+// Task 3 — Functions as Values
+const gradeFormatter = function(grade) {
+  return `Grade: ${grade}`;
+};
+
+const statusChecker = function(status) {
+  return status === "PASS" ? "Congratulations!" : "Needs Improvement";
+};
+
+const operationFunctions = [gradeFormatter, statusChecker];
