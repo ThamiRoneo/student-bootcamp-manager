@@ -114,3 +114,17 @@ registerStudent("Eve Martinez", "Node.js", 65, 70, 62);
 
 displayStudents();
 generateReport();
+
+
+// ==================== PHASE 2 - ADVANCED JAVASCRIPT ====================
+
+// Task 1 — Closure: student-processing counter
+const createProcessingCounter = (function() {
+  let count = 0;
+  return function() {
+    count++;
+    return count;
+  };
+})();
+
+const getProcessedCount = createProcessingCounter;
