@@ -205,3 +205,10 @@ function displayStudentInfo(course, year) {
   console.log(`Year: ${year}`);
   console.log(`ID: ${this.id}`);
 }
+
+// Task 8 — apply()
+function showMarksSummary(subject1, subject2, subject3) {
+  console.log(`\nMarks Summary for ${this.name}:`);
+  console.log(`Subject 1: ${subject1}, Subject 2: ${subject2}, Subject 3: ${subject3}`);
+  console.log(`Total marks count: ${this.marks.length}`);
+}
