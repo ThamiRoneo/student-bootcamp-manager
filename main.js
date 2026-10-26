@@ -6,7 +6,6 @@ let students = [];
 let idCounter = 1000;
 
 // Generate unique student IDs
-// Generate unique student IDs
 function generateStudentId() {
   idCounter++;
   return `SBM-${idCounter}`;
@@ -66,14 +65,14 @@ function displayStudents() {
   console.log("\n=== STUDENT LIST ===");
   for (let i = 0; i < students.length; i++) {
     console.log(`${i + 1}. ${students[i].name} (${students[i].id}) - ${students[i].course}`);
-    console.log(`   Marks: [${students[i].marks.join(', ')}] | Avg: ${students[i].average.toFixed(2)} | Status: ${students[i].status}`);
+    console.log(`   Marks: [${students[i].marks.join(', ')}] | Avg: ${students[i].average.toFixed(2)}% | Status: ${students[i].status}`);
   }
   console.log("====================\n");
 }
 
 function generateReport() {
   console.log("\n╔═══════════════════════════════════════╗");
-  console.log("║     STUDENT BOOTCAMP MANAGER REPORT    ║");
+  console.log("║     STUDENT BOOTCAMP MANAGER REPORT   ║");
   console.log("╚═══════════════════════════════════════╝");
   
   for (let i = 0; i < students.length; i++) {
@@ -82,7 +81,7 @@ function generateReport() {
     console.log(`Student name: ${s.name}`);
     console.log(`Course: ${s.course}`);
     console.log(`Marks: [${s.marks.join(', ')}]`);
-    console.log(`Average: ${s.average.toFixed(2)}`);
+    console.log(`Average: ${s.average.toFixed(2)}%`);
     console.log(`Status: ${s.status}`);
   }
   
@@ -183,7 +182,7 @@ function processStudent(student, callback) {
   console.log(`Students processed so far: ${count}`);
   
   setTimeout(function() {
-    console.log(`Completed processing for ${student.name}`);
+    console.log(`\nCompleted processing for ${student.name}`);
     if (typeof callback === 'function') {
       callback(student);
     }
@@ -289,3 +288,71 @@ console.log("\n10. GENERATOR - Unique Student IDs:");
 console.log(`   First ID: ${idGen.next().value}`);
 console.log(`   Second ID: ${idGen.next().value}`);
 console.log(`   Third ID: ${idGen.next().value}`);
+
+
+// ==================== PHASE 3 - ASYNCHRONOUS PROCESSING, TESTING & FINALISATION ====================
+
+console.log("\n\n=== PHASE 3 - ASYNCHRONOUS PROCESSING ===\n");
+
+// Task 1 & 2 - Asynchronous Processing with setTimeout and demonstration of async behaviour
+console.log("Starting asynchronous student processing...\n");
+
+function asyncProcessStudent(student, delay, callback) {
+  console.log(`1. Starting to process: ${student.name}`);
+  setTimeout(function() {
+    console.log(`2. Processing complete for: ${student.name} (after ${delay}ms delay)`);
+    if (typeof callback === 'function') {
+      callback(student);
+    }
+  }, delay);
+}
+
+console.log("3. This message executes immediately - JavaScript does not block!");
+console.log("4. Other operations continue while waiting...\n");
+
+asyncProcessStudent(students[0], 200, function(student) {
+  console.log(`5. Callback executed for ${student.name} - Final Status: ${student.status}\n`);
+});
+
+asyncProcessStudent(students[3], 300, function(student) {
+  console.log(`6. Callback executed for ${student.name} - Final Status: ${student.status}\n`);
+});
+
+console.log("7. These messages appear before the setTimeout callbacks complete!\n");
+
+
+// Task 3 - Build the Final Report
+setTimeout(function() {
+  console.log("\n\n╔═══════════════════════════════════════════════════════╗");
+  console.log("║           FINAL COMPREHENSIVE STUDENT REPORT          ║");
+  console.log("╚═══════════════════════════════════════════════════════╝");
+  
+  console.log("\n--- STUDENT INFORMATION ---");
+  for (let i = 0; i < students.length; i++) {
+    const s = students[i];
+    console.log(`\n${i + 1}. ${s.name}`);
+    console.log(`   Student ID: ${s.id}`);
+    console.log(`   Course: ${s.course}`);
+    console.log(`   Marks: [${s.marks.join(', ')}]`);
+    console.log(`   Average: ${s.average.toFixed(2)}%`);
+    console.log(`   Status: ${s.status}`);
+  }
+  
+  let passedCount = 0;
+  let failedCount = 0;
+  for (let i = 0; i < students.length; i++) {
+    if (students[i].status === "PASS") {
+      passedCount++;
+    } else {
+      failedCount++;
+    }
+  }
+  
+  console.log("\n\n--- CLASS INFORMATION ---");
+  console.log(`Total students: ${students.length}`);
+  console.log(`Students processed: ${getProcessedCount() > 0 ? getProcessedCount() : students.length}`);
+  console.log(`Students who passed: ${passedCount}`);
+  console.log(`Students who failed: ${failedCount}`);
+  console.log("\n╚═══════════════════════════════════════════════════════╝\n");
+  
+}, 500);
