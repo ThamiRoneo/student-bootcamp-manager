@@ -12,6 +12,26 @@ function generateStudentId() {
   return `SBM-${idCounter}`;
 }
 
+// 6. Calculate Student Averages
+function calculateAverage(marks) {
+  if (!marks || marks.length === 0) {
+    return 0;
+  }
+  let sum = 0;
+  for (let i = 0; i < marks.length; i++) {
+    sum += marks[i];
+  }
+  return sum / marks.length;
+}
+
+// 7. Determine Student Status
+function determineStatus(average, passingMark = 50) {
+  if (average >= passingMark) {
+    return "PASS";
+  }
+  return "FAIL";
+}
+
 // 3. Implement Default Parameters, 4. Implement Rest Parameters
 function registerStudent(name, course = "Web Development", ...marks) {
   if (!marks || marks.length === 0) {
@@ -34,31 +54,12 @@ function registerStudent(name, course = "Web Development", ...marks) {
   students.push(student);
   return student;
 }
+
 // 5. Implement Spread Syntax
 function addMultipleStudents(...studentObjects) {
   const studentsToAdd = [...studentObjects];
   students = [...students, ...studentsToAdd];
   return students;
-}
-
-// 6. Calculate Student Averages
-function calculateAverage(marks) {
-  if (!marks || marks.length === 0) {
-    return 0;
-  }
-  let sum = 0;
-  for (let i = 0; i < marks.length; i++) {
-    sum += marks[i];
-  }
-  return sum / marks.length;
-}
-
-// 7. Determine Student Status
-function determineStatus(average, passingMark = 50) {
-  if (average >= passingMark) {
-    return "PASS";
-  }
-  return "FAIL";
 }
 
 function displayStudents() {
@@ -69,6 +70,7 @@ function displayStudents() {
   }
   console.log("====================\n");
 }
+
 function generateReport() {
   console.log("\n╔═══════════════════════════════════════╗");
   console.log("║     STUDENT BOOTCAMP MANAGER REPORT    ║");
@@ -150,7 +152,7 @@ const bootcampConfig = (function() {
 
 // Task 3 — Functions as Values
 const gradeFormatter = function(grade) {
-  return `Grade: ${grade}`;
+  return `Grade: ${grade}%`;
 };
 
 const statusChecker = function(status) {
@@ -171,7 +173,7 @@ function calculateBonusPoints(marks) {
       bonus += 5;
     }
   }
-  return bonus;
+  return bonus + "+";
 }
 
 // Task 5 — Callbacks
@@ -181,7 +183,7 @@ function processStudent(student, callback) {
   console.log(`Students processed so far: ${count}`);
   
   setTimeout(function() {
-    console.log(`\nCompleted processing for ${student.name}`);
+    console.log(`Completed processing for ${student.name}`);
     if (typeof callback === 'function') {
       callback(student);
     }
@@ -192,8 +194,10 @@ function processStudent(student, callback) {
 const studentProcessor = {
   processorName: "Main Processor",
   process: function(student) {
-    console.log(`\n[${this.processorName}] \nProcessing student: ${student.name}`);
-    console.log(`Course: ${student.course} \nStatus: ${student.status}`);
+    console.log(`\n[${this.processorName}]`);
+    console.log(`Processing student: ${student.name}`);
+    console.log(`Course: ${student.course}`);
+    console.log(`Status: ${student.status}`);
     return this.processorName;
   }
 };
@@ -209,7 +213,9 @@ function displayStudentInfo(course, year) {
 // Task 8 — apply()
 function showMarksSummary(subject1, subject2, subject3) {
   console.log(`\nMarks Summary for ${this.name}:`);
-  console.log(`Subject 1: ${subject1}% \nSubject 2: ${subject2}% \nSubject 3: ${subject3}%`);
+  console.log(`Subject 1: ${subject1}%`);
+  console.log(`Subject 2: ${subject2}%`);
+  console.log(`Subject 3: ${subject3}%`);
   console.log(`Total marks count: ${this.marks.length}`);
 }
 
@@ -250,7 +256,7 @@ console.log(`   Operations stored: ${operationFunctions.length} functions`);
 
 console.log("\n4. HIGHER-ORDER FUNCTION:");
 const bonus = calculateBonusPoints(students[0].marks);
-console.log(`   Bonus points for ${students[0].name}: ${bonus}+`);
+console.log(`   Bonus points for ${students[0].name}: ${bonus}`);
 const result = processStudentData(students[0], function(s) {
   return `Processed via HOF: ${s.name} has average ${s.average.toFixed(2)}%`;
 });
@@ -258,11 +264,11 @@ console.log(`   ${result}`);
 
 console.log("\n5. CALLBACKS - Asynchronous Processing:");
 processStudent(students[0], function(student) {
-  console.log(`Callback executed for ${student.name} - Status: ${student.status}`);
+  console.log(`   Callback executed for ${student.name} - Status: ${student.status}`);
 });
 
 processStudent(students[1], function(student) {
-  console.log(`Callback executed for ${student.name} - Status: ${student.status}`);
+  console.log(`   Callback executed for ${student.name} - Status: ${student.status}`);
 });
 
 console.log("\n6. THIS KEYWORD:");
